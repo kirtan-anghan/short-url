@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+  <link rel="stylesheet" href="./global.css" />
+  <link rel="stylesheet" href="./index.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Font Awesome 6 Pro:wght@300;400&display=swap" />
+</head>
+
+<body>
+  <div class="main-page-trial-page">
+    <div class="frame">
+      <img class="swirl-icon" alt="" src="./public/swirl.svg" />
+
+      <div class="frame1">
+        <div class="cubes">
+          <div class="cubes-child"></div>
+          <div class="cubes-item"></div>
+          <div class="cubes-inner"></div>
+        </div>
+      </div>
+    </div>
+    <div class="frame2">
+      <div class="frame3">
+        <div class="frame4">
+          <div class="pmg-bottom-40px"></div>
+        </div>
+        <div class="frame5">
+          <div class="frame6">
+            <div class="parent">
+              <div class="div-1">😮✌</div>
+              <div class="shorten-your-loooong-links">
+                <div class="shorten-your-loooong">
+                  Short Your Loooong Links ️
+                </div>
+              </div>
+            </div>
+            <div class="frame-parent">
+              <form method="POST" action="/create">
+                <div class="frame-wrapper">
+                  <div class="frame-container">
+                    <div class="abtn-secondary-parent">
+                      <div>
+                        <input type="text" name="actual_url" class="abtn-secondary-child abtn-secondary"
+                          placeholder="Enter Original Link " />
+                      </div>
+                      <button class="btn-primary" id="generate">
+                        <div class="shorten-now" type="submit">Short Now!</div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+
+              <div class="abtn-secondary-group">
+                <div class="abtn-secondary1">
+                  <b class="short-link">Short Link</b>
+                  <b class="original-link">Original Link</b>
+                  <b class="qr-code">QR Code</b>
+                  <b class="clicks">Clicks</b>
+                  <b class="date">Date</b>
+                </div>
+
+
+                <div class="scrollbar">
+                  <% data.forEach(element=> { %>
+                    <div class="abtn-secondary2">
+                      <div class="httpslink-parent">
+                        <div class="httpslink"> <a href="<%= element.short_url %>" target="_blank">
+                            http://localhost:5000/<%=element.short_url%></a>
+                        </div>
+
+                        <div> <button onclick="copyShortUrl('http://localhost:5000/<%= element.short_url %>')" class="copy copy-wrapper"><img
+                              src="./public/copy.png" /></button>
+
+                        </div>
+                      </div>
+                      <div class="image-5-parent">
+                        <img class="image-5-icon" alt="" src="./public/image-5@2x.png" />
+
+                        <div class="httpslink actual-scroll">
+                          <a href="<%= element.actual_url %>" target="_blank">
+                            <%= element.actual_url %>
+                          </a>
+                        </div>
+                      </div>
+                      <img class="image-4-icon" alt="" src="./public/image-4@2x.png" />
+
+                      <div class="httpslink">
+                        <%= element.clicks %>
+                      </div>
+                      <div class="httpslink">
+                        <%= element.createdAtFormatted %>
+                      </div>
+                    </div>
+                    <% }); %>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function copyShortUrl(url) {
+
+  const shortUrl = url;
+  const copyButton = document.querySelector('.copy');
+
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(shortUrl)
+      .then(() => {
+        copyButton.classList.add('copied-animation');
+  setTimeout(() => {
+    copyButton.classList.remove('copied-animation');
+  }, 500);
+      })
+      .catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+  } else {
+    const textarea = document.createElement('textarea');
+    textarea.value = shortUrl;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    copyButton.classList.add('copied-animation');
+  setTimeout(() => {
+    copyButton.classList.remove('copied-animation');
+  }, 500);
+  }
+
+}
+
+  </script>
+</body>
+
+</html>
