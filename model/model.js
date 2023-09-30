@@ -19,6 +19,10 @@ const scehma = new mongo.Schema(
       type: Date,
       default: Date.now,
     },
+    qrcode: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

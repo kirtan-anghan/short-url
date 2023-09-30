@@ -72,11 +72,11 @@
                     <div class="abtn-secondary2">
                       <div class="httpslink-parent">
                         <div class="httpslink"> <a href="<%= element.short_url %>" target="_blank">
-                          https://short-linkss.vercel.app/<%=element.short_url%></a>
+                            https://short-linkss.vercel.app/<%=element.short_url%></a>
                         </div>
 
-                        <div> <button onclick="copyShortUrl('https://short-linkss.vercel.app/<%= element.short_url %>')" class="copy copy-wrapper"><img
-                              src="./public/copy.png" /></button>
+                        <div> <button onclick="copyShortUrl('https://short-linkss.vercel.app/<%= element.short_url %>')"
+                            class="copy copy-wrapper"><img src="./public/copy.png" /></button>
 
                         </div>
                       </div>
@@ -89,7 +89,7 @@
                           </a>
                         </div>
                       </div>
-                      <img class="image-4-icon" alt="" src="./public/image-4@2x.png" />
+                      <img class="image-4-icon" alt="" src="<%= element.qrcode %>" />
 
                       <div class="httpslink">
                         <%= element.clicks %>
@@ -112,34 +112,34 @@
   <script>
     function copyShortUrl(url) {
 
-  const shortUrl = url;
-  const copyButton = document.querySelector('.copy');
+      const shortUrl = url;
+      const copyButton = document.querySelector('.copy');
 
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(shortUrl)
-      .then(() => {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(shortUrl)
+          .then(() => {
+            copyButton.classList.add('copied-animation');
+            setTimeout(() => {
+              copyButton.classList.remove('copied-animation');
+            }, 500);
+          })
+          .catch(err => {
+            console.error('Failed to copy: ', err);
+          });
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = shortUrl;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
         copyButton.classList.add('copied-animation');
-  setTimeout(() => {
-    copyButton.classList.remove('copied-animation');
-  }, 500);
-      })
-      .catch(err => {
-        console.error('Failed to copy: ', err);
-      });
-  } else {
-    const textarea = document.createElement('textarea');
-    textarea.value = shortUrl;
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textarea);
-    copyButton.classList.add('copied-animation');
-  setTimeout(() => {
-    copyButton.classList.remove('copied-animation');
-  }, 500);
-  }
+        setTimeout(() => {
+          copyButton.classList.remove('copied-animation');
+        }, 500);
+      }
 
-}
+    }
 
   </script>
 </body>
