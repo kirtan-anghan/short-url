@@ -1,7 +1,7 @@
 
 ---
 
-# short-URL
+# short-URL ✌️
 
 Welcome to short-URL, a web application that allows users to transform lengthy URLs into short, shareable links and generate corresponding QR codes.
 
@@ -24,6 +24,7 @@ Welcome to short-URL, a web application that allows users to transform lengthy U
 
 ## Technologies Used
 
+- JavaScript
 - Node.js
 - Express
 - MongoDB
@@ -57,7 +58,7 @@ npm start
 
 2. Open the application in your browser: [http://localhost:5000](http://localhost:5000)
 
-## Contributing
+## Contributing 👨‍💻
 
 🛠️ **Calling All Innovators!** 🛠️
 
